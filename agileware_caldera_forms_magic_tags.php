@@ -23,6 +23,8 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       agileware_caldera_forms_magic_tags
  * Domain Path:       /languages
+ * GitHub Plugin URI: agileware/Aglieware-Caldera-Forms-Magic-Tags
+ * GitHub Plugin URI: https://github.com/agileware/Aglieware-Caldera-Forms-Magic-Tags
  */
 
 // If this file is called directly, abort.
