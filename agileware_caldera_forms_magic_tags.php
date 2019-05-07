@@ -30,6 +30,31 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// Check Caldera forms
+function agileware_caldera_forms_magic_tags_child_plugin_has_parent_plugin() {
+	if ( defined( 'CFCORE_VER' ) && version_compare( CFCORE_VER, '1.5.0.10', '>=' ) ) {
+		return true;
+	} else {
+		deactivate_plugins( plugin_basename( __FILE__ ) );
+		add_action( 'admin_head', 'agileware_caldera_forms_magic_tags_hide_update_msg' );
+		add_action( 'admin_notices', 'agileware_caldera_forms_magic_tags_child_plugin_notice' );
+	}
+}
+
+function agileware_caldera_forms_magic_tags_hide_update_msg() {
+	if ( is_admin() ) {
+		echo '<style>.update-nag, .updated { display: none; }</style>';
+	}
+}
+
+function agileware_caldera_forms_magic_tags_child_plugin_notice() {
+	?>
+    <div class="error"><p>Sorry, this Plugin requires the Caldera Form plugin to be installed and active.</p></div><?php
+
+}
+
+add_action( 'admin_init', 'agileware_caldera_forms_magic_tags_child_plugin_has_parent_plugin' );
+
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
@@ -79,4 +104,5 @@ function run_agileware_caldera_forms_magic_tags() {
 	$plugin->run();
 
 }
+
 run_agileware_caldera_forms_magic_tags();

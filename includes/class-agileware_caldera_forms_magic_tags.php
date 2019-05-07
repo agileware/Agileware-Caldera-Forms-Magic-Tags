@@ -35,7 +35,7 @@ class Agileware_caldera_forms_magic_tags {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Agileware_caldera_forms_magic_tags_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Agileware_caldera_forms_magic_tags_Loader $loader Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -44,7 +44,7 @@ class Agileware_caldera_forms_magic_tags {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 * @var      string $plugin_name The string used to uniquely identify this plugin.
 	 */
 	protected $plugin_name;
 
@@ -53,7 +53,7 @@ class Agileware_caldera_forms_magic_tags {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
+	 * @var      string $version The current version of the plugin.
 	 */
 	protected $version;
 
@@ -78,6 +78,7 @@ class Agileware_caldera_forms_magic_tags {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_magic_tags();
 
 	}
 
@@ -121,6 +122,11 @@ class Agileware_caldera_forms_magic_tags {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-agileware_caldera_forms_magic_tags-public.php';
+
+		/**
+		 * The magic tags manager
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-agileware_caldera_forms_magic_tags_manager.php';
 
 		$this->loader = new Agileware_caldera_forms_magic_tags_Loader();
 
@@ -176,6 +182,20 @@ class Agileware_caldera_forms_magic_tags {
 	}
 
 	/**
+	 * Start point of magic tags functions
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_magic_tags() {
+
+		$manager = new Agileware_caldera_forms_magic_tags_Manager();
+
+		$this->loader->add_filter( 'caldera_forms_get_magic_tags', $manager, 'register_tags', 10, 2 );
+		$this->loader->add_filter( 'caldera_forms_do_magic_tag', $manager, 'dispatch_callback', 10, 2 );
+	}
+
+	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
 	 * @since    1.0.0
@@ -188,8 +208,8 @@ class Agileware_caldera_forms_magic_tags {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_plugin_name() {
 		return $this->plugin_name;
@@ -198,8 +218,8 @@ class Agileware_caldera_forms_magic_tags {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    Agileware_caldera_forms_magic_tags_Loader    Orchestrates the hooks of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_loader() {
 		return $this->loader;
@@ -208,8 +228,8 @@ class Agileware_caldera_forms_magic_tags {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The version number of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_version() {
 		return $this->version;

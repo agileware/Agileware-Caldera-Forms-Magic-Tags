@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0e1bffee-f3a1-4c73-be6f-fcb07648d5b8" name="wayfinder" url="http://hordor.agilehost.net">
+        <fileTransfer host="hordor.agilehost.net" port="11929" privateKey="$USER_HOME$/.ssh/id_rsa" rootFolder="/var/www/vhosts/wayfinderhub.com.au" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="11929" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
