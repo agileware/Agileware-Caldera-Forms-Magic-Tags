@@ -35,7 +35,6 @@ class Agileware_caldera_forms_magic_tags_Manager {
 	 * Agileware_caldera_forms_magic_tags_Manager constructor.
 	 */
 	public function __construct() {
-		// TODO this should be the helper function file
 		require plugin_dir_path( dirname( __FILE__ ) ) . 'master_helper_functions.php';
 		require plugin_dir_path( dirname( __FILE__ ) ) . 'custom_helper_functions.php';
 

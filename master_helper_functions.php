@@ -1,8 +1,12 @@
 <?php
 
+function is_civi_enable() {
+	return function_exists( 'civicrm_initialize' );
+}
+
 function membership_check() {
 
-	if ( civicrm_initialize() ) {
+	if ( is_civi_enable() && civicrm_initialize() ) {
 
 		try {
 
@@ -31,7 +35,7 @@ function membership_check() {
 
 function contact_subtype_check() {
 
-	if ( civicrm_initialize() ) {
+	if ( is_civi_enable() && civicrm_initialize() ) {
 
 		try {
 
@@ -58,6 +62,9 @@ function contact_subtype_check() {
 }
 
 function get_related_contact_subtype( $relationshipTypeId ) {
+	if ( ! is_civi_enable() ) {
+		return null;
+	}
 	$helper = CiviCRM_Caldera_Forms::instance()->helper;
 	civicrm_initialize();
 	$contact = $helper->current_contact_data_get();
@@ -84,7 +91,7 @@ function get_related_contact_subtype( $relationshipTypeId ) {
 
 function renewal_membership_check() {
 
-	if ( civicrm_initialize() ) {
+	if ( is_civi_enable() && civicrm_initialize() ) {
 
 		try {
 
@@ -126,6 +133,9 @@ function renewal_membership_check() {
  * @throws CiviCRM_API3_Exception
  */
 function cf_getPriceFieldOptionsOfForm( $currentMembershipTypeId, $optionValues ) {
+	if ( ! is_civi_enable() ) {
+		return [];
+	}
 	$priceFieldOptions = civicrm_api3( 'PriceFieldValue', 'get', [
 		'sequential'                            => 1,
 		'membership_type_id'                    => $currentMembershipTypeId,
@@ -204,6 +214,9 @@ function cf_isPriceFieldActive( $priceFieldOption ) {
  * @throws CiviCRM_API3_Exception
  */
 function cf_getCurrentMembershipStatues() {
+	if ( ! is_civi_enable() ) {
+		return [];
+	}
 	$membershipStatues = civicrm_api3( 'MembershipStatus', 'get', [
 		'sequential'        => 1,
 		'is_current_member' => 1,
@@ -224,6 +237,9 @@ function cf_getCurrentMembershipStatues() {
  * @throws CiviCRM_API3_Exception
  */
 function cf_getMembershipsByStatues( $membershipStatues ) {
+	if ( ! is_civi_enable() ) {
+		return [];
+	}
 	$memberships = civicrm_api3( 'Membership', 'get', [
 		'sequential' => 1,
 		'contact_id' => "user_contact_id",
