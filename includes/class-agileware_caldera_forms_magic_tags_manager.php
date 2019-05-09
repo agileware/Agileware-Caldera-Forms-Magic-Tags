@@ -61,6 +61,7 @@ class Agileware_caldera_forms_magic_tags_Manager {
 			'tags' => $magic_tags,
 			'wrap' => array( '{', '}' )
 		];
+
 		return $tags;
 	}
 
@@ -85,7 +86,7 @@ class Agileware_caldera_forms_magic_tags_Manager {
 			return call_user_func( $callback, $value );
 		}
 
-		return $value;
+		return "Looking for function named: '$callback', but not found.";
 	}
 
 
