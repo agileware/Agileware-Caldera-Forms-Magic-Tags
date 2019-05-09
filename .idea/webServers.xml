@@ -10,6 +10,14 @@
           <option name="port" value="11929" />
         </fileTransfer>
       </webServer>
+      <webServer id="5628109d-a0b2-4263-82d7-f893a48edbbd" name="sandbox" url="http://hordor.agilehost.net">
+        <fileTransfer host="hordor.agilehost.net" port="11929" privateKey="$USER_HOME$/.ssh/id_rsa" rootFolder="/var/www/vhosts/pengyi.hordor.agileware.com.au" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="11929" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>
