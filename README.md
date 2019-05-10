@@ -6,13 +6,15 @@ A Caldera Forms magic tags collection that used by Agileware. Most magic tags he
 
 ### Magic Tags So Far
 From version 1.1.0, we got:
-- contact:related-subtype
-- contact:subtype
-- member:membership
-- member:membership_type
-- member:membership_value
-- member:renewal
-- user:roles
+- contact:related-subtype   This tag will look for the login user id, get the related organization subtype
+- contact:subtype           Same as above, but with different relationship id
+- member:membership         
+- member:membership_type    The type of the logged in user's membership
+- member:membership_value   This price of the logged in user's membership
+- member:renewal            
+- user:roles                
+
+Note: Some of the tags are not suitable to reuse in other sites.
 
 ## Developer
 Here is some helpful information for developers.
